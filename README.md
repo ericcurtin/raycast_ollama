@@ -66,6 +66,22 @@ Use **Manage Models** to:
 
 Use **Loaded Models** to see the models currently held in memory and unload them when they are no longer needed.
 
+## Using with llmman
+
+[llmman](https://github.com/llmmanorg/llmman) is a local model runner that serves the Ollama API (alongside OpenAI- and Anthropic-compatible ones) on port 17434. Because it speaks the same API, this extension can use it as a server without any extra configuration beyond the port.
+
+1. Install llmman and start the server:
+
+   ```sh
+   curl -fsSL https://raw.githubusercontent.com/llmmanorg/llmman/main/install.sh | sh
+   llmman serve
+   ```
+
+2. Open **Manage Models** in Raycast and use **Add Server** with the URL `http://127.0.0.1:17434` and authentication set to **None**.
+3. Pull a model from **Manage Models** or with the CLI, for example `llmman pull gemma4` or `llmman pull hf.co/unsloth/Qwen3.5-0.8B-GGUF`, then select the new server and model in any command.
+
+Chat, tool calling, images, and model management all work against llmman. The **Web Search** and **Web Fetch** tools are provided by the hosted Ollama API and are not part of llmman.
+
 ## Create Custom Commands
 
 Use **Create Custom Command** to create a Raycast Quicklink backed by your own prompt, model, and Ollama parameters. Prompts follow the [Raycast Prompt Explorer](https://prompts.ray.so) format and support these tags:
